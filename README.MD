@@ -1,4 +1,4 @@
-###Installation
+##Installation
 
 - Install python
 - Clone the repository
