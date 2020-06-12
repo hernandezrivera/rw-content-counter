@@ -79,7 +79,6 @@ def get_inoreader_data(content):
 
 
 def get_reliefweb_data(item, origin_url):
-\
     response = requests.get(
         "https://api.reliefweb.int/v1/reports?appname=content-stats&limit=1&filter[field]=origin&" + "filter[value]=" + origin_url + "&profile=full")
     rw_data = response.json()
@@ -140,11 +139,17 @@ def process_ir_categories(categories, item):
             categories[category_name]['n_items'] += 1
             if item['ir_starred']:
                 categories[category_name]['n_starred'] += 1
+                item['ir_starred'] = 1
+            else:
+                item['ir_starred'] = 0
             if item['ir_read']:
                 categories[category_name]['n_read'] += 1
+                item['ir_read'] = 1
+            else:
+                item['ir_read'] = 0
             if "rw_url" in item:
                 categories[category_name]['n_posted_rw'] += 1
-    item['ir_categories_array'] = []
+    item['ir_categories_array'] = []  # empty to save output space
     return categories
 
 
@@ -152,16 +157,14 @@ def process_ir_categories(categories, item):
 def post_something():
     time_start = datetime.datetime.now()
 
+    # get input parameters
     authorization_response = request.form.get('code')
     date = request.form.get('date')
     non_read = request.form.get('read-content')
-    print(non_read)
     non_read = (non_read == "True")
 
     match_rw = request.form.get('match-rw')
-    print(match_rw)
     match_rw = (match_rw == "True")
-    print(match_rw)
 
     max_items = int(request.form.get('max-items'))
     date_unix = date_to_unix(date)
@@ -202,7 +205,7 @@ def post_something():
         ir_n_items = ir_n_items + len(contents['items'])
         print(
             '- Additional %i contents to process from inoreader. Total so far: %i ' % (
-            len(contents['items']), ir_n_items))
+                len(contents['items']), ir_n_items))
         for content in contents['items']:
             item = get_inoreader_data(content)
             if match_rw:
@@ -230,21 +233,23 @@ def post_something():
     # saving the result as json file
     print('==== SAVING OUTPUT ==== ' + str(datetime.datetime.now()))
 
-    with open('data.json', 'w') as outfile:
+    current_time = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+    filename_json = 'inoreader_items_' + current_time + '.json'
+    filename_csv = 'inoreader_items_' + current_time + '.csv'
+
+    with open(filename_json, 'w') as outfile:
         json.dump(items, outfile)
         df = pd.DataFrame(items)
+        print('- Datafile JSON with result for each item available at: ' + filename_json)
     try:
-        filename = 'inoreader_items_' + str(time_end) + '.csv'
-        df.to_csv(filename, index=None)
-        print('- Datafile with result for each item available at: ' + filename)
+        df.to_csv(filename_csv, index=None)
+        print('- Datafile CSV with result for each item available at: ' + filename_csv)
     except:
-        print("- I cannot write in the output file (%s) , omitting" % filename)
-
-    print(categories)
-    return render_template('results.html', date=date, non_read=non_read, n_inoreader=ir_n_items,
-                           n_reliefweb=rw_n_items, time=total_minutes, categories=categories)
+        print("- I cannot write in the output file (%s) , omitting" % filename_csv)
 
     print('==== DONE ==== ' + str(datetime.datetime.now()))
+    return render_template('results.html', date=date, non_read=non_read, n_inoreader=ir_n_items,
+                           n_reliefweb=rw_n_items, time=total_minutes, categories=categories)
 
 
 @app.route('/code')
