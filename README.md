@@ -8,7 +8,7 @@
 - Clone the repository 
 
 ```
-git clone git@github.com:hernandezrivera/rw-content-counter.git
+git clone https://github.com/hernandezrivera/rw-content-counter.git
 ```
 - Install pip: 
 ```
