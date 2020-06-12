@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+      <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta charset="utf-8">
+      <title>RW Inoreader API - Config</title>
+  </head>
+  <body class="mui-container-fluid">
+  <h1> Introduce the parameters for the query </h1>
+  <p> Once submitted, the query can take 15 minutes per each day of processing, as it analyzes report by report, so ... be patient :)</p>
+  <form class="mui-form" action = /post method="POST">
+
+        <div class="mui-textfield">
+        <input type="text" name="code" id="code" value={{code}} >
+        <label for="code">Value following the code parameter in the redirected URL</label>
+        </div>
+
+        <div class="mui-textfield">
+        <label for="date">Date from (YYYY-MM-DD) / Default:  {{days_back}} days ago</label>
+        <input type="text" name="date" id=date" value={{date}} >
+        </div>
+
+        <label for="read-content">What content do you want to count?</label>
+        <div class="mui-radio"><label>
+        <input type="radio" name="read-content" value="False" checked> All Content
+        </label></div>
+        <div class="mui-radio"><label>
+        <input type="radio" name="read-content" value="True" > Non-read content
+        </label></div>
+
+        <label for="match-rw">Do you want to match with ReliefWeb? (increases processing time)</label>
+        <div class="mui-radio"><label>
+        <input type="radio" name="match-rw" value="True" checked> Yes
+        </label></div>
+        <div class="mui-radio"><label>
+        <input type="radio" name="match-rw" value="False"> No
+        </label></div>
+
+        <div class="mui-textfield">
+        <label for="max-items">How many items to process? Select a low number for debuging purposes / Default:  0 (no limit)</label>
+        <input type="text" name="max-items" id=max-items" value="0" >
+        </div>
+
+
+        <input class="mui-btn mui-btn--raised" type="submit" name="submit" id="submit"/>
+ </form>
+
+  </body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="//cdn.muicss.com/mui-0.10.3/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>RW Inoreader API - Results</title>
+  </head>
+  <body class="mui-container-fluid">
+  <h1> Results</h1>
+
+    <p><div>Your JSON and CSV files should be ready  </div>
+      <ul>
+      <li>Since {{date}}</li>
+      <li>Including only non-read:  {{non_read}} </li>
+      <li>Number of items on inoreader:  {{n_inoreader}} </li>
+      <li>Number of matching items on ReliefWeb:  {{n_reliefweb}} </li>
+      <li>Minutes to process:  {{time}} </li>
+
+    </ul></p>
+
+
+
+  <table class="mui-table mui-table--bordered" >
+    <thead>
+    <tr>
+      <th>Category</th>
+      <th>Items</th>
+      <th>Read</th>
+      <th>Starred</th>
+        <th>Matching RW</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% for key, value in categories.items() %}
+        <tr>
+            <td>{{ key }}</td>
+            <td>{{ value['n_items'] }}</td>
+            <td>{{ value['n_read'] }}</td>
+            <td>{{ value['n_starred'] }}</td>
+            <td>{{ value['n_posted_rw'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a class="mui-btn mui-btn--raised" href="/" > Do another query</a>
+
+
+
+  </body>
+</html>

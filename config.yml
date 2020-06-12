@@ -1,0 +1,7 @@
+client_id : '999999712'
+client_secret : 'o9tWqx7hNoBG2C5feSFU6gs6qx9qbIiK'
+port : 5000
+local_url : 'http://localhost'
+heroku_url : 'https://inoreader-api.herokuapp.com'
+local_hosting : True
+debug: False
