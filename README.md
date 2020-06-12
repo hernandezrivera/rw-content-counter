@@ -10,10 +10,17 @@
 ```
 git clone https://github.com/hernandezrivera/rw-content-counter.git
 ```
-- Install pip: 
+- Install pip (depends on your installation and OS, you can try different commands):
+
+ - Windows
 ```
 python -m pip install
 ```
+ - MacOS
+```
+sudo easy_install pip
+```
+ 
 - Get the dependencies: 
 ```
 pip install -r .\requirements
