@@ -20,6 +20,7 @@ python -m pip install
 ```
 sudo easy_install pip
 ```
+- Check that you are in the project directory where you find ``requirements.txt`` and ``main.py``
  
 - Get the dependencies: 
 ```
