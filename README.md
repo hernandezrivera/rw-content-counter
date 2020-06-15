@@ -10,7 +10,7 @@
 ```
 git clone https://github.com/hernandezrivera/rw-content-counter.git
 ```
-- Install pip (depends on your installation and OS, you can try different commands):
+- Install pip. _Depending on your installation and OS, you can try different commands. Anyway, the newest python version should come with pip pre-installed._
 
  - Windows
 ```
@@ -20,13 +20,17 @@ python -m pip install
 ```
 sudo easy_install pip
 ```
-- Check that you are in the project directory where you find ``requirements.txt`` and ``main.py``
+
+- Check that you are in the project directory where you find ``requirements.txt`` and ``main.py``. To check type ``ls`` (MacOS) or ``dir`` (Windows) 
  
 - Get the dependencies: 
 ```
-pip install -r .\requirements
+pip3 install -r .\requirements
 ```
 - Run the script 
 ```
-python main.py
+python3 main.py
 ```
+- In a browser, go to the URL provided on the console (typically http://127.0.0.1:5000), specify the parameters of your query, Submit the query and wait for the results.
+
+- After the execution, you will see on your browser a table with the Inoreader folders and tags. You will have also CSV and JSON files with more detailed datasets, that you can use to perform your own analysis, such as items per inoreader source, matches with ReliefWeb ...
