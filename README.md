@@ -33,4 +33,6 @@ python3 main.py
 ```
 - In a browser, go to the URL provided on the console (typically http://127.0.0.1:5000), specify the parameters of your query, Submit the query and wait for the results.
 
-- After the execution, you will see on your browser a table with the Inoreader folders and tags. You will have also CSV and JSON files with more detailed datasets, that you can use to perform your own analysis, such as items per inoreader source, matches with ReliefWeb ...
+- After the execution, you will see on your browser a table with the Inoreader folders and tags. You will have also CSV and JSON files with more detailed datasets, that you can use to perform your own analysis, such as items per inoreader source and matches with ReliefWeb.
+
+NOTE: There are two ways of "matching ReliefWeb", the first one counts the stars and the second one looks for the urls in ReliefWeb (and it's quite intensive). If you don't need that second check, you can select the option not to match with ReliefWeb.
